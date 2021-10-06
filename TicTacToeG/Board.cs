@@ -13,10 +13,12 @@ namespace TicTacToeG
 
         public void Start()
         {
-            _player1Token = 'x';
-            _player2Token = 'o';
+            _player1Token = 'X';
+            _player2Token = 'O';
             _currentToken = _player1Token;
-            _board = new char[3, 3]{ { '0', '0', '0' }, { '0', '0', '0' }, { '0', '0', '0' } };
+            _board = new char[3, 3]{ { '7', '8', '9' }, 
+                                     { '4', '5', '6' },     
+                                     { '1', '2', '3' } };
         }
         /// <summary>
         /// Gets the input from player to set the player token to the desired location in the 2D array.
@@ -24,15 +26,56 @@ namespace TicTacToeG
         /// </summary>
         public void Update()
         {
-            if (Game.GetInput() == 1)
+            CheckWinner(_player1Token);
+            CheckWinner(_player2Token);
+
+            Console.WriteLine(_currentToken + "'s turn");
+
+            char selectLocation = Console.ReadKey(true).KeyChar;
+
+            switch (selectLocation)
             {
-                _board[0, 0] = _currentToken;
+                case '1':
+                    _board[2, 0] = _currentToken;
+                    break;
+                case '2':
+                    _board[2, 1] = _currentToken;
+                    break;
+                case '3':
+                    _board[2, 2] = _currentToken;
+                    break;
+                case '4':
+                    _board[1, 0] = _currentToken;
+                    break;
+                case '5':
+                    _board[1, 1] = _currentToken;
+                    break;
+                case '6':
+                    _board[1, 2] = _currentToken;
+                    break;
+                case '7':
+                    _board[0, 0] = _currentToken;
+                    break;
+                case '8':
+                    _board[0, 2] = _currentToken;
+                    break;
+                case '9':
+                    _board[0, 2] = _currentToken;
+                    break;
             }
 
             if (_currentToken == _player1Token)
+            {
+                
                 _currentToken = _player2Token;
+            }
+                
             else
+            {
+                
                 _currentToken = _player1Token;
+            }
+            
         }
 
         /// <summary>
@@ -72,6 +115,109 @@ namespace TicTacToeG
         /// <returns></returns>
         private bool CheckWinner(char token)
         {
+
+            //Lists every possible way X can win.
+            if (_board[2, 0] == 'X' && _board[2, 1] == 'X' && _board[2, 2] == 'X') 
+            {
+                Console.WriteLine("X Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[1, 0] == 'X' && _board[1, 1] == 'X' && _board[1, 2] == 'X')
+            {
+                Console.WriteLine("X Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[0, 0] == 'X' && _board[0, 1] == 'X' && _board[0, 2] == 'X')
+            {
+                Console.WriteLine("X Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[2, 0] == 'X' && _board[1, 0] == 'X' && _board[0, 0] == 'X')
+            {
+                Console.WriteLine("X Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[2, 1] == 'X' && _board[1, 1] == 'X' && _board[0, 1] == 'X')
+            {
+                Console.WriteLine("X Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[2, 2] == 'X' && _board[1, 2] == 'X' && _board[0, 2] == 'X')
+            {
+                Console.WriteLine("X Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[0, 0] == 'X' && _board[1, 1] == 'X' && _board[2, 2] == 'X')
+            {
+                Console.WriteLine("X Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[2, 0] == 'X' && _board[1, 1] == 'X' && _board[0, 2] == 'X')
+            {
+                Console.WriteLine("X Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+
+
+
+            //Lists every possible way O can win.
+            if (_board[2, 0] == 'O' && _board[2, 1] == 'O' && _board[2, 2] == 'O')
+            {
+                Console.WriteLine("O Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[1, 0] == 'O' && _board[1, 1] == 'O' && _board[1, 2] == 'O')
+            {
+                Console.WriteLine("O Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[0, 0] == 'O' && _board[0, 1] == 'O' && _board[0, 2] == 'O')
+            {
+                Console.WriteLine("O Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[2, 0] == 'O' && _board[1, 0] == 'O' && _board[0, 0] == 'O')
+            {
+                Console.WriteLine("O Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[2, 1] == 'O' && _board[1, 1] == 'O' && _board[0, 1] == 'O')
+            {
+                Console.WriteLine("O Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[2, 2] == 'O' && _board[1, 2] == 'O' && _board[0, 2] == 'O')
+            {
+                Console.WriteLine("O Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[0, 0] == 'O' && _board[1, 1] == 'O' && _board[2, 2] == 'O')
+            {
+                Console.WriteLine("O Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            else if (_board[2, 0] == 'O' && _board[1, 1] == 'O' && _board[0, 2] == 'O')
+            {
+                Console.WriteLine("O Wins");
+                Console.ReadKey(true);
+                return true;
+            }
+            //If noone wins yet, return false
             return false;
         }
         /// <summary>
