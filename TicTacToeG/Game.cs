@@ -17,9 +17,9 @@ namespace TicTacToeG
 
             while (!_gameOver)
             {
-                Draw();
-                Update();
-                
+                    Draw();
+                    Update();
+
             }
 
             End();
@@ -36,7 +36,7 @@ namespace TicTacToeG
 
         private void Update()
         {
-            _gameBoard.Update();
+           _gameBoard.Update();
         }
         /// <summary>
         /// Plays when leaving the game
