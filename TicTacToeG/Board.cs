@@ -27,24 +27,25 @@ namespace TicTacToeG
         /// </summary>
         public void Update()
         {
-
+            //before each turn,check to see if there is a winner
             CheckWinner(_currentToken);
-
+            //before each turn, check to see if there is a turn left
             if (turnsLeft == 0)
             {
                 Console.WriteLine("The game is a draw");
                 Console.ReadKey(true);
                 RestartMenu();
             }
+            //if the game is won, go to the restart menu
             if (GameIsWon == true)
             {
                 RestartMenu();
             }
-
+            //show who's turn it is
             Console.WriteLine(_currentToken + "'s turn");
 
                 char selectLocation = Console.ReadKey(true).KeyChar;
-
+            //each choice marks a different location in the grid
                 switch (selectLocation)
                 {
                     case '1':
@@ -83,6 +84,7 @@ namespace TicTacToeG
                         _board[0, 2] = _currentToken;
                         turnsLeft--;
                         break;
+                    //if the player types anything that is not available
                     default:
                         Console.WriteLine("InvalidInput");
                         Console.ReadKey(true);
@@ -90,16 +92,16 @@ namespace TicTacToeG
                         return;
 
                 }
-
+            // if it is player one's turn
                 if (_currentToken == _player1Token)
                 {
-
+                //switch to player two
                     _currentToken = _player2Token;
                 }
-
+                //if it is player 2's turn
                 else
                 {
-
+                //switch to player 1
                     _currentToken = _player1Token;
                 }
             
@@ -120,25 +122,13 @@ namespace TicTacToeG
                               _board[2,0] + " | " + _board[2,1] + " | " + _board[2,2] + "\n");
                 
         }
+        //plays the end of the game message
         public void End()
         {
             Console.Clear();
             Console.WriteLine("BYE BYE HAVE A WONDERFUL TIME!");
             Console.ReadKey(true);
         }
-        /// <summary>
-        /// Assigns the spot at the given indices in the board array to be the given token.
-        /// </summary>
-        /// <param name="token">The token to set the array index to</param>
-        /// <param name="posX">The x position of the token</param>
-        /// <param name="posY">The y position of the token</param>
-        /// <returns>Returns false if the indices are out of range.</returns>
-        public bool SetToken(char token, int posX, int posY)
-        {
-            return false;
-        }
-
-
         
         /// <summary>
         /// Check to see if there are three of the given token appears 3 times consecutively, vertically, horizontally, or diagonally.
@@ -285,6 +275,8 @@ namespace TicTacToeG
             turnsLeft = 9;
             GameIsWon = false;
         }
+
+        //asks if the player wants to play again
         public void RestartMenu()
         {
            
@@ -293,24 +285,17 @@ namespace TicTacToeG
             Console.WriteLine("Do you want to play again? \n 1. Yes\n 2. No");
             switch (input)
             {
+                //if yes, clear the board
                 case '1':
                     ClearBoard();
                     break;
                 case '2':
+                    //if no, set the game to gameover
                     Game._gameOver = true;
                     break;
                 
             }
                 
-        }
-        public static int GetInput()
-        {
-            int choice = -1;
-            
-            if (!int.TryParse(Console.ReadLine(), out choice))
-                choice = -1;
-
-            return choice;
         }
     }
 }
